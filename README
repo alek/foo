@@ -1,1 +1,53 @@
-foo : simple java-based code search util
+
+foo | simple java-based code search & analysis toolkit
+
+
+usage examples :
+----------------
+
+1) find matches for given class :
+
+$ ./bin/foo class IndexWriter
+found total of 7 matching classes : 
++ com.sun.tools.doclets.formats.html.AbstractIndexWriter
++ com.sun.tools.doclets.formats.html.AbstractPackageIndexWriter
++ com.sun.tools.doclets.formats.html.PackageIndexWriter
++ com.sun.tools.doclets.formats.html.SingleIndexWriter
++ com.sun.tools.doclets.formats.html.SplitIndexWriter
++ org.apache.lucene.index.IndexWriter
++ org.apache.lucene.index.IndexWriterConfig
+
+2) find matches for given method :
+
+$ ./bin/foo method isTokenChar
++ [org.apache.lucene.analysis.CharTokenizer]  boolean isTokenChar(char)
++ [org.apache.lucene.analysis.CharTokenizer]  boolean isTokenChar(int)
++ [org.apache.lucene.analysis.LetterTokenizer]  boolean isTokenChar(int)
++ [javax.activation.MimeTypeParameterList]  boolean isTokenChar(char)
+
+
+3 ) get classes and methods defined in given jar : 
+
+$ ./bin/foo jar lib/lucene-core-3.4.0.jar
+processing content of jar file : /Data/git/foo/lib/lucene-core-3.4.0.jar
+total class entries : 902
++ org.apache.lucene.analysis.WhitespaceAnalyzer
+  - createComponents
+        org.apache.lucene.analysis.ReusableAnalyzerBase$TokenStreamComponents createComponents(java.lang.String,java.io.Reader)
++ org.apache.lucene.analysis.WordlistLoader
+  - getSnowballWordSet
+        java.util.Set getSnowballWordSet(java.lang.Class,java.lang.String)
+        java.util.Set getSnowballWordSet(java.io.Reader)
+  - getStemDict
+        java.util.HashMap getStemDict(java.io.File)
+  - getWordSet
+        java.util.Set getWordSet(java.lang.Class,java.lang.String)
+        java.util.Set getWordSet(java.lang.Class,java.lang.String,java.lang.String)
+        java.util.HashSet getWordSet(java.io.File)
+        java.util.HashSet getWordSet(java.io.File,java.lang.String)
+        java.util.HashSet getWordSet(java.io.Reader,java.lang.String)
+        java.util.HashSet getWordSet(java.io.Reader)
+....
+
+
+

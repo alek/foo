@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#
+# void.foo | main exec script
+#
+
+CMD=$1
+LIB_PATH="lib/:target/:/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Classes/"
+
+CLASSPATH=$CLASSPATH:.:lib/lucene-core-3.4.0.jar:target/foo-0.0.1.jar
+JAVA_OPTIONS="-client"
+
+if [ $CMD == "class" ]; then
+	java $JAVA_OPTIONS -cp $CLASSPATH com.voidlabs.foo.tools.FindClass $LIB_PATH $2
+elif [ $CMD == "method" ]; then
+	java $JAVA_OPTIONS -cp $CLASSPATH com.voidlabs.foo.tools.FindMethod $LIB_PATH $2
+elif [ $CMD == "jar" ]; then
+	java $JAVA_OPTIONS -cp $CLASSPATH com.voidlabs.foo.tools.JarTool $LIB_PATH $2
+else 
+	echo "usage : foo [command] [params]"
+fi
