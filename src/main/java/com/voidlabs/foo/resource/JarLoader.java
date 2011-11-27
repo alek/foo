@@ -7,12 +7,22 @@ import java.util.jar.JarEntry;
 import java.io.ByteArrayOutputStream;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import com.voidlabs.foo.conf.FooConf;
+
 /**
  * Simple jar file analysis tool
  */
 public class JarLoader extends ClassLoader {
 	
-	LinkedBlockingQueue<ClassData> classQueue = new LinkedBlockingQueue<ClassData>();
+	private LinkedBlockingQueue<ClassData> classQueue = new LinkedBlockingQueue<ClassData>();
+	private static long bytesLoaded = 0;
+	
+	/** 
+	 * get total bytes loaded by this loader
+	 */ 
+	public long getBytesLoaded() {
+		return bytesLoaded;
+	}
 	
 	/**
 	 * process jar and dump info
@@ -40,10 +50,15 @@ public class JarLoader extends ClassLoader {
 				}
 				
 				byte[] classData = buff.toByteArray();
+				bytesLoaded += classData.length;
 				
 				classQueue.add(new ClassData(className, classData));
 			}
 		
+		}
+		
+		if (FooConf.DEBUG_ENABLED) {
+ 			System.out.println(jarFile.getCanonicalPath() + " total loaded : " + (double)bytesLoaded/(1024*1024) + " Mb");
 		}
 		
 		int numClasses = classQueue.size();

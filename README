@@ -1,4 +1,5 @@
 
+
 foo | simple java-based code search & analysis toolkit
 
 
@@ -26,7 +27,7 @@ $ ./bin/foo method isTokenChar
 + [javax.activation.MimeTypeParameterList]  boolean isTokenChar(char)
 
 
-3 ) get classes and methods defined in given jar : 
+3) get classes and methods defined in given jar : 
 
 $ ./bin/foo jar lib/lucene-core-3.4.0.jar
 processing content of jar file : /Data/git/foo/lib/lucene-core-3.4.0.jar
@@ -48,6 +49,23 @@ total class entries : 902
         java.util.HashSet getWordSet(java.io.Reader,java.lang.String)
         java.util.HashSet getWordSet(java.io.Reader)
 ....
+
+4) get full description of all classes matching given query :
+
+$ ./bin/foo describe sun.management.ManagementFactory
++ sun.management.ManagementFactory
+	java.lang.management.MemoryPoolMXBean createMemoryPool(java.lang.String,boolean,long,long)
+	java.lang.management.MemoryManagerMXBean createMemoryManager(java.lang.String)
+	java.lang.management.GarbageCollectorMXBean createGarbageCollector(java.lang.String,java.lang.String)
+	void checkAccess(java.security.Permission)
+	java.lang.Thread$State toThreadState(int)
+	void unregisterMBean(javax.management.MBeanServer,java.lang.String)
+	void addMBean(javax.management.MBeanServer,java.lang.Object,java.lang.String)
+...
+
+5) find matches for given string inside source tree
+
+$ ./bin/foo search LinkedList
 
 
 
