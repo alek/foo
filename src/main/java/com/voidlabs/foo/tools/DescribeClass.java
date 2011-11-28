@@ -28,7 +28,8 @@ public class DescribeClass {
 		
 		for (File file : jarFiles) {
 			(new JarLoader()).load(file, new ClassloadCallback() {
-				public void handle(Class loadedClass, ClassData data) {
+				public void handle(ClassData data) {
+					Class loadedClass = data.getClassEntry();
 					if (loadedClass.getName().indexOf(queryClass) > -1) {
 						System.out.println("+ " + loadedClass.getName());
 						Method[] methods = loadedClass.getDeclaredMethods();

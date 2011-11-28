@@ -10,6 +10,9 @@ import com.voidlabs.foo.resource.JarLoader;
 import com.voidlabs.foo.conf.FooConf;
 import com.voidlabs.foo.util.SimpleMemoryMonitor;
 
+import com.voidlabs.foo.local.LocalFooStorage;
+import com.voidlabs.foo.local.JarContentCache;
+
 /**
  * Simple method-search class
  * TODO : merge this with FindClass tool
@@ -30,9 +33,11 @@ public class FindMethod {
 		
 		File[] libPaths = FSUtil.getLibraryPaths(args[0]);
 		List<File> jarFiles = FSUtil.getFileList(libPaths,".jar");
+
+		JarContentCache jarCache = LocalFooStorage.init().getJarCache();
 		
 		for (File file : jarFiles) {
-			(new JarLoader()).load(file, new MethodSearchCallback(args[1]));
+			(new JarLoader(jarCache)).load(file, new MethodSearchCallback(args[1]));
 		}
 		
 	}

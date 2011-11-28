@@ -16,7 +16,9 @@ public class SimplePrintCallback implements ClassloadCallback {
 	/**
 	 * print basic information about class being loaded
 	 */ 
-	public void handle(Class loadedClass, ClassData data) {
+	public void handle(ClassData data) {
+		
+		Class loadedClass = data.getClassEntry();
 		
 		System.out.println("+ " + loadedClass.getCanonicalName());
 

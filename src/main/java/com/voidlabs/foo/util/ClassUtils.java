@@ -2,11 +2,26 @@ package com.voidlabs.foo.util;
 
 import java.lang.reflect.Method;
 
+import java.util.List;
+import java.util.LinkedList;
+
 /**
  * Collection of random class-related utils
  */ 
 
 public class ClassUtils {
+	
+	/**
+	 * get list of method footprints for given class
+	 */
+	public static LinkedList<String> getMethodFootprints(Class classEntry) {
+		Method[] methods = classEntry.getDeclaredMethods();
+		LinkedList<String> result = new LinkedList<String>();
+		for (Method method : methods) {
+			result.add(getMethodFootprint(method));
+		}
+		return result;
+	}
 	
 	/** 
 	 * get print representation of method footprint
@@ -28,5 +43,6 @@ public class ClassUtils {
 		
 		return sb.toString();
 	}
+	
 	
 }

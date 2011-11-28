@@ -12,6 +12,6 @@ public interface ClassloadCallback {
 	 * @loadedClass - class loaded using appropriate classloader
 	 * @data - original class bytecode and related metadata
 	 */
-	public void handle(Class loadedClass, ClassData data);
+	public void handle(ClassData data);
 	
 }
