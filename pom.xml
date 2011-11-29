@@ -77,13 +77,6 @@
             </snapshots>
         </repository>
         <repository>
-            <id>repository.jboss.org</id>
-            <url>http://repository.jboss.org/maven2</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
             <id>repository.ibiblio.org</id>
             <url>http://www.ibiblio.org/maven2</url>
         </repository>
